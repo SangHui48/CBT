@@ -191,3 +191,5 @@ sketch
 # End of https://www.toptal.com/developers/gitignore/api/python,react
 FastAPI/finance.db
 FastAPI/__pycache__
+
+.idea
