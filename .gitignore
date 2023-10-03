@@ -179,8 +179,8 @@ logs
 **/*.backup.*
 **/*.back.*
 
-node_modules
-bower_components
+React/node_modules
+React/bower_components
 
 *.sublime*
 
