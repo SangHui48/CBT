@@ -179,8 +179,9 @@ logs
 **/*.backup.*
 **/*.back.*
 
-React/node_modules
-React/bower_components
+React/finance-app/node_modules
+React/finance-app/bower_components
+React/finance-app/package-lock.json
 
 *.sublime*
 
