@@ -19,3 +19,5 @@ class Person(SQLModel, TimeMixin, table=True):
     phone_number: str
 
     users: Optional["Users"] = Relationship(sa_relationship_kwargs={'userlist': False})
+    
+    # 8분 34초부터 이어서 듣기
