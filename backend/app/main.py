@@ -1,15 +1,27 @@
 import uvicorn
 from fastapi import FastAPI, APIRouter
+from app.config import db
 
-app = FastAPI()
+def init_app():
+    db.init()
 
-router = APIRouter()
+    app = FastAPI(
+        title="CBT",
+        description="Login Page",
+        version="1",
+    )
 
-@router.get("/")
-async def home():
-    return "welcome home"
+    @app.on_event("startup")
+    async def startup():
+        await db.create_all()
 
-app.include_router(router)
+    @app.on_event("shutdown")
+    async def shutdown():
+        await db.close()
+    
+    return app
+
+app = init_app()
 
 def start():
     """ Launched with 'poetry run start' at root level"""
