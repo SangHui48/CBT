@@ -18,6 +18,6 @@ class Person(SQLModel, TimeMixin, table=True):
     profile: str
     phone_number: str
 
-    users: Optional["Users"] = Relationship(sa_relationship_kwargs={'userlist': False})
+    users: Optional["Users"] = Relationship(sa_relationship_kwargs={'userlist': False}, back_populates="person")
     
     # 8분 34초부터 이어서 듣기

@@ -1,5 +1,7 @@
 from pydantic import BaseModel, Field
 from datetime import datetime
+from sqlalchemy import Column, DateTime
+from sqlmodel import Field
 
 class TimeMixin(BaseModel):
     """Mxin to for datetime value of when the entity was created and when it was last modified"""
