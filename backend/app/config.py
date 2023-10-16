@@ -1,8 +1,16 @@
+import os
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker
 from sqlmodel import SQLModel
+from dotenv import load_dotenv
 
-DB_CONFIG = f"postgresql+asyncpg://postgres:1234@localhost:5432/test"
+load_dotenv()
+
+DB_CONFIG = os.getenv("DB_CONFIG")
+SECRET_KEY = os.getenv("SECRET_KEY")
+ALGORITHM = os.getenv("ALGORITHM")
+ACCESS_TOKEN_EXPIRE_MINUTE = os.getenv("ACCESS_TOKEN_EXPIRE_MINUTE")
+
 
 class AsyncDatabaseSession:
     

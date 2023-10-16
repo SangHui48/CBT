@@ -1,6 +1,7 @@
 import uvicorn
 from fastapi import FastAPI, APIRouter
-from config import db
+from app.config import db
+from app.service.auth_service import generate_role
 
 def init_app():
     db.init()
@@ -14,6 +15,7 @@ def init_app():
     @app.on_event("startup")
     async def startup():
         await db.create_all()
+        await generate_role()
         
     @app.on_event("shutdown")
     async def shutdown():
@@ -24,7 +26,7 @@ def init_app():
 app = init_app()
 
 def start():
-    uvicorn.run("app.main:app", host="localhost", port=8888, reload=True)
+    uvicorn.run("main:app", host="localhost", port=8888, reload=True)
     
 
 if __name__ == "__main__":
