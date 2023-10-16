@@ -1,13 +1,12 @@
-from email.policy import default
 from typing import List, Optional
-from app.model.user_role import UsersRole
 from sqlalchemy import Column, String
 from sqlmodel import SQLModel, Field, Relationship
 
-from app.model.mixins import TimeMixin
+from .mixins import TimeMixin
+from .user_role import UsersRole
 
-class Users(SQLModel, TimeMixin, table=True):
-    __tablename__="users"
+class Users(SQLModel,TimeMixin,table=True):
+    __tablename__= "users"
 
     id: Optional[str] = Field(None, primary_key=True, nullable=False)
     username: str = Field(sa_column=Column("username", String, unique=True))
