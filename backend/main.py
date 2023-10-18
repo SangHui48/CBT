@@ -20,6 +20,11 @@ def init_app():
     @app.on_event("shutdown")
     async def shutdown():
         await db.close()
+        
+    from app.controller import authentification, users
+    
+    app.include_router(authentification.router)
+    app.include_router(users.router)
     
     return app
 
