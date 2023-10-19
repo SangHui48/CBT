@@ -28,7 +28,7 @@ class AuthService:
         _users_id = str(uuid4())
 
         # convert birth date type from frontend str to date
-        birth_date = datetime.strptime(register.birth, '%d-%m-%Y')
+        birth_date = datetime.strptime(register.birth, '%Y-%m-%d')
 
         # open image profile default to bas64 string
         with open("./media/profile.png", "rb") as f:
