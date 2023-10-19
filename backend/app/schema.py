@@ -32,7 +32,7 @@ class RegisterSchema(BaseModel):
         logger.debug(f"phone in 2 validatior: {v}")
 
         # regex phone number
-        regex = r"^[\+]?[(]?[0-9]{4}[)]?[-\s\.]?[0-9]{4}[-\s\.]?[0-9]{4,6}$"
+        regex = r'^01[016789]\d{3,4}\d{4}$'
         if v and not re.search(regex, v, re.I):
             raise HTTPException(status_code=400, detail="Invalid input phone number!")
         return v
