@@ -32,8 +32,8 @@ export default function Login() {
             Sign In
           </button>
           <p className="mt-4 text-sm mb-2">
-            <span className='mr-2'>계정이 없으신가요?{""}</span>
-              <span className="mr-3 underline cursor-pointer">회원가입</span>
+            <span className='mr-2'>계정이 없으신가요?{" "}</span>
+              <span className="underline cursor-pointer">회원가입</span> or {" "}
               <span className="underline cursor-pointer">비밀번호 찾기</span>
           </p>
         </div>
