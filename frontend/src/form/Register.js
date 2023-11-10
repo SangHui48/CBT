@@ -1,6 +1,31 @@
-import React from 'react'
+import React, { useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import "./customDatePickerWidth.css";
 
 export default function Register() {
+  const options = [
+    { value: "", label: "성별을 선택하세요" },
+    { value: "MALE", label: "남성" },
+    { value: "FEMALE", label: "여성" },
+  ];
+
+  // Register Form
+  const [formRegister, setFormRegister] = useState({
+    name: "",
+    username: "",
+    email: "",
+    phone_number: "",
+    password: "",
+    birth: "",
+    sex: "",
+    profile: "",
+  });
+
+  //    default value datepicker
+  const [birthDate, setBirthDate] = useState(null);
+
+
   return (
     <React.Fragment>
       <div>
@@ -18,6 +43,41 @@ export default function Register() {
             placeholder="이름"
             className="block text-sm py-3 px-4 rounded-lg w-full border outline-none focus:ring focus:outline-none focus:ring-yellow-400"
           />
+          {/* 버그 노란띠 생성이 안됨. 이거 해결해야한다. 어떻게 할지 고민해보기 */}
+          <div className="customDatePickerWidth">
+
+          </div>
+          <DatePicker
+            className="block text-sm py-3 px-4 rounded-lg w-full border outline-none focus:ring focus:outline-none focus:ring-yellow-400"
+            dateFormat="dd-MM-yyyy"
+            placeholderText="Birth date"
+          />
+          {/* <div className="relative block text-sm py-3 px-4 rounded-lg w-full border focus-within:ring focus-within:ring-yellow-400">
+            <DatePicker
+              popperClassName="w-full"
+              className="w-full focus:outline-none"
+              dateFormat="dd-MM-yyyy"
+              placeholderText="생년월일"
+            />
+          </div> */}
+          <select
+            className="block text-sm py-3 px-4 rounded-lg w-full border outline-none focus:ring focus:outline-none focus:ring-yellow-400">
+              {options.map((data) => {
+              if (data.value === "") {
+                return (
+                  <option key={data.label} value={data.value} disabled>
+                    {data.label}
+                  </option>
+                );
+              } else {
+                return (
+                  <option key={data.label} value={data.value}>
+                    {data.label}
+                  </option>
+                );
+              }
+            })}
+          </select>
           <input
             type="text"
             placeholder="아이디"
