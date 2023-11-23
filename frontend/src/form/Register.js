@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./customDatePickerWidth.css";
+import { Link, useNavigate } from "react-router-dom";
 
-export default function Register() {
+export default function Register(props) {
   const options = [
     { value: "", label: "성별을 선택하세요" },
     { value: "MALE", label: "남성" },
@@ -108,7 +109,14 @@ export default function Register() {
           </button>
           <p className="mt-4 text-sm">
             이미 계정이 있으신가요?{" "}
-            <span className="underline cursor-pointer">로그인</span>
+            <Link
+              to="/?signin"
+              onClick={() => {
+                props.setPage("login");
+              }}
+            >
+              <span className="underline cursor-pointer">로그인</span>
+            </Link>
           </p>
         </div>
       </form>

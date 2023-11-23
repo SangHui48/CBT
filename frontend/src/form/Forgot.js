@@ -42,7 +42,14 @@ export default function Forgot(props) {
           </button>
           <p className="mt-4 text-sm">
             이미 계정이 있으신가요?{" "}
-            <span className="underline cursor-pointer">로그인</span>
+            <Link
+              to="/?signin"
+              onClick={() => {
+                props.setPage("login");
+              }}
+            >
+              <span className="underline cursor-pointer">로그인</span>
+            </Link>
           </p>
         </div>
       </form>
