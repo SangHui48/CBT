@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import axios from "axios";
 
 export default function Login(props) {
 
@@ -18,6 +19,37 @@ export default function Login(props) {
         break;
     }
   };
+
+  const onSubmitHandler = async (event) => {
+    event.preventDefault();
+    console.log(loginForm);
+    // call api login
+    await axios
+      .post("http://localhost:8888/auth/login", loginForm)
+      .then((response) => {
+        console.log(response);
+        // Save token to local storage
+        localStorage.setItem("auth_token", response.data.result.access_token);
+        localStorage.setItem(
+          "auth_token_type",
+          response.data.result.token_type
+        );
+
+        // add successfully notif
+        // toast.success(response.data.detail);
+        // reload page after success login
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+      })
+      .catch((error) => {
+        // add error notif
+        
+        console.log(error);
+        // toast.error(error.response.data.detail);
+      });
+  };
+
   return (
     <React.Fragment>
         <div>
@@ -28,7 +60,7 @@ export default function Login(props) {
           수능 문제풀이 시스템
         </p>
       </div>
-      <form>
+      <form onSubmit={onSubmitHandler}>
         <div className="space-y-4">
           <input
             type="text"
@@ -43,7 +75,7 @@ export default function Login(props) {
             placeholder="Password"
             className="block text-sm py-3 px-4 rounded-lg w-full border outline-none focus:ring focus:outline-none focus:ring-yellow-400"
             onChange={(event) => {
-              onChangeForm("username", event);
+              onChangeForm("password", event);
             }}
           />
         </div>
